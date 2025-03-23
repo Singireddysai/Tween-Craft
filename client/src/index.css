@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,5 +13,96 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    background-image: radial-gradient(circle at 90% 5%, rgba(149, 70, 255, 0.1) 0%, transparent 45%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  body, p, div {
+    font-family: 'Exo 2', sans-serif;
+  }
+}
+
+@layer components {
+  .glow-card {
+    @apply relative overflow-hidden rounded-xl;
+    box-shadow: 0 0 25px rgba(149, 70, 255, 0.3);
+  }
+
+  .violet-gradient-text {
+    background: linear-gradient(to right, #9546FF, #c961ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-300;
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+
+  .btn-gradient {
+    @apply font-medium text-white rounded-lg transition-all duration-300;
+    background: linear-gradient(135deg, #9546FF, #6a11cb);
+    box-shadow: 0 4px 15px rgba(106, 17, 203, 0.4);
+  }
+  
+  .btn-gradient:hover {
+    box-shadow: 0 6px 25px rgba(106, 17, 203, 0.6);
+    transform: translateY(-2px);
+  }
+
+  .glass-panel {
+    @apply rounded-xl backdrop-blur-md;
+    background: rgba(36, 36, 36, 0.7);
+    border: 1px solid rgba(149, 70, 255, 0.2);
+  }
+
+  /* Animated loader with purple gradient */
+  .loader-purple {
+    @apply relative;
+    width: 100px;
+    height: 4px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #9546FF, #6a11cb) left/0% 100% no-repeat #2a2a2a;
+    animation: fillBar 3s ease-in-out infinite;
+  }
+
+  @keyframes fillBar {
+    0%, 100% { background-size: 0% 100%; }
+    50% { background-size: 100% 100%; }
+  }
+  
+  /* Sparkle effect for buttons or important elements */
+  .sparkle {
+    @apply relative overflow-hidden;
+  }
+  
+  .sparkle::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 10%, transparent 10.5%) 0 0/10px 10px;
+    transform: rotate(45deg);
+    animation: sparkleMove 4s linear infinite;
+    opacity: 0;
+  }
+  
+  .sparkle:hover::after {
+    opacity: 1;
+  }
+  
+  @keyframes sparkleMove {
+    0% { transform: translateX(-50%) translateY(-50%) rotate(0); }
+    100% { transform: translateX(0) translateY(0) rotate(180deg); }
   }
 }

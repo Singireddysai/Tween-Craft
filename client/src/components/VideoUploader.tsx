@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Upload, FileVideo } from "lucide-react";
+import { Upload, FileVideo, Info, Zap, Settings } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface VideoUploaderProps {
   onUploadSuccess: (data: { fileId: string, fileName: string, filePath: string, multiplier: number }) => void;
@@ -69,19 +70,22 @@ const VideoUploader: React.FC<VideoUploaderProps> = ({ onUploadSuccess, socket }
     const handleDragOver = (e: DragEvent) => {
       e.preventDefault();
       e.stopPropagation();
-      dropzone.classList.add('border-[#4cf977]');
+      dropzone.classList.add('border-purple-500');
+      dropzone.classList.add('bg-purple-900/10');
     };
     
     const handleDragLeave = (e: DragEvent) => {
       e.preventDefault();
       e.stopPropagation();
-      dropzone.classList.remove('border-[#4cf977]');
+      dropzone.classList.remove('border-purple-500');
+      dropzone.classList.remove('bg-purple-900/10');
     };
     
     const handleDrop = (e: DragEvent) => {
       e.preventDefault();
       e.stopPropagation();
-      dropzone.classList.remove('border-[#4cf977]');
+      dropzone.classList.remove('border-purple-500');
+      dropzone.classList.remove('bg-purple-900/10');
       
       if (e.dataTransfer && e.dataTransfer.files.length > 0) {
         const file = e.dataTransfer.files[0];
@@ -158,15 +162,24 @@ const VideoUploader: React.FC<VideoUploaderProps> = ({ onUploadSuccess, socket }
   
   return (
     <section id="upload-section" className="mb-12">
-      <div className="bg-[#262626] rounded-xl p-6 md:p-8 border border-gray-700">
-        <h2 className="text-2xl font-['K2D'] font-semibold mb-4">Upload Video</h2>
-        <p className="text-[#9CA3AF] mb-6">Select a video file to enhance with GMFSS Fortuna frame interpolation</p>
+      <motion.div 
+        className="glass-panel p-8 glow-card hover-scale"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="flex items-center mb-6">
+          <FileVideo className="w-7 h-7 mr-3 text-purple-400" />
+          <h2 className="text-3xl font-bold violet-gradient-text">Upload Video</h2>
+        </div>
+        <p className="text-gray-300 mb-8 text-lg">Select a video file to enhance with GMFSS Fortuna frame interpolation</p>
         
         {/* File Upload Area */}
         {!videoPreviewUrl ? (
-          <div 
+          <motion.div 
             ref={dropzoneRef}
-            className="relative border-2 border-dashed border-gray-600 rounded-lg p-8 text-center cursor-pointer hover:border-[#ffb86c] transition-colors group"
+            className="relative border-2 border-dashed border-gray-600 rounded-xl p-10 text-center cursor-pointer hover:border-purple-500 transition-all duration-300 group"
+            whileHover={{ boxShadow: "0 0 20px rgba(149, 70, 255, 0.2)" }}
           >
             <input 
               ref={fileInputRef}
@@ -178,17 +191,36 @@ const VideoUploader: React.FC<VideoUploaderProps> = ({ onUploadSuccess, socket }
               onChange={handleFileChange}
             />
             
-            <div className="py-6">
-              <Upload className="mx-auto h-16 w-16 text-gray-500 group-hover:text-[#ffb86c] transition-colors" />
-              <p className="mt-4 text-lg font-medium">Drag & drop your video here</p>
-              <p className="mt-2 text-sm text-[#9CA3AF]">or <span className="text-[#ffb86c]">browse files</span></p>
-              <p className="mt-1 text-xs text-[#9CA3AF]">Supports MP4, MOV, AVI, WEBM</p>
+            <div className="py-8">
+              <motion.div 
+                className="mx-auto h-20 w-20 bg-purple-900/20 rounded-full flex items-center justify-center"
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ repeat: Infinity, duration: 3 }}
+              >
+                <Upload className="h-10 w-10 text-purple-400 group-hover:text-purple-300 transition-colors" />
+              </motion.div>
+              <h3 className="mt-6 text-xl font-medium">Drag & drop your video here</h3>
+              <p className="mt-3 text-base text-gray-400">or <span className="text-purple-400 font-medium">browse files</span></p>
+              <p className="mt-2 text-sm text-gray-500">Supports MP4, MOV, AVI, WEBM</p>
             </div>
-          </div>
+          </motion.div>
         ) : (
-          <div id="preview-container" className="mt-8">
-            <h3 className="text-lg font-medium mb-4">Preview</h3>
-            <div className="bg-black rounded-lg overflow-hidden relative">
+          <motion.div 
+            id="preview-container" 
+            className="mt-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="flex items-center mb-4">
+              <Info className="w-5 h-5 mr-2 text-purple-400" />
+              <h3 className="text-xl font-semibold">Preview</h3>
+            </div>
+            
+            <motion.div 
+              className="bg-black rounded-xl overflow-hidden relative glow-card"
+              whileHover={{ scale: 1.01 }}
+            >
               <video 
                 ref={videoRef}
                 id="videoPreview" 
@@ -199,54 +231,67 @@ const VideoUploader: React.FC<VideoUploaderProps> = ({ onUploadSuccess, socket }
                 className="w-full max-h-[400px]"
                 src={videoPreviewUrl}
               ></video>
-              <div className="absolute top-3 left-3 bg-black/70 text-white text-xs px-2 py-1 rounded">
-                Original: <span id="original-info">{videoInfo.width}x{videoInfo.height}</span>
+              <div className="absolute top-3 left-3 backdrop-blur-md bg-black/50 text-white text-xs px-3 py-2 rounded-full font-medium border border-gray-700">
+                <span className="text-purple-400">Original: </span> 
+                <span id="original-info">{videoInfo.width}x{videoInfo.height}</span>
               </div>
-            </div>
+            </motion.div>
             
-            <div className="mt-6 flex flex-wrap gap-4">
-              <div className="flex-1 min-w-[180px]">
-                <label className="block text-sm font-medium mb-1">Interpolation Factor</label>
-                <select 
-                  className="w-full bg-[#1E1E1E] border border-gray-700 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-1 focus:ring-[#ffb86c]" 
-                  value={multiplier}
-                  onChange={(e) => setMultiplier(parseInt(e.target.value, 10))}
-                >
-                  <option value={2}>2x (30fps → 60fps)</option>
-                  <option value={4}>4x (15fps → 60fps)</option>
-                  <option value={6}>6x (10fps → 60fps)</option>
-                  <option value={8}>8x (7.5fps → 60fps)</option>
-                </select>
+            <div className="mt-8 p-6 bg-gray-900/50 rounded-xl backdrop-blur-sm border border-gray-800">
+              <div className="flex items-center mb-4">
+                <Settings className="w-5 h-5 mr-2 text-purple-400" />
+                <h3 className="text-lg font-semibold">Processing Options</h3>
               </div>
               
-              <div className="flex-1 min-w-[180px]">
-                <label className="block text-sm font-medium mb-1">Output Resolution</label>
-                <select 
-                  className="w-full bg-[#1E1E1E] border border-gray-700 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-1 focus:ring-[#ffb86c]"
-                  value={resolution}
-                  onChange={(e) => setResolution(e.target.value)}
-                >
-                  <option value="original">Original Size</option>
-                  <option value="512">512px</option>
-                  <option value="720">720px</option>
-                  <option value="1080">1080px</option>
-                </select>
+              <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium mb-2 text-gray-300">Interpolation Factor</label>
+                  <select 
+                    className="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all" 
+                    value={multiplier}
+                    onChange={(e) => setMultiplier(parseInt(e.target.value, 10))}
+                  >
+                    <option value={2}>2x (30fps → 60fps)</option>
+                    <option value={4}>4x (15fps → 60fps)</option>
+                    <option value={6}>6x (10fps → 60fps)</option>
+                    <option value={8}>8x (7.5fps → 60fps)</option>
+                  </select>
+                  <p className="mt-1 text-xs text-gray-500">Higher values generate more intermediate frames</p>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium mb-2 text-gray-300">Output Resolution</label>
+                  <select 
+                    className="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+                    value={resolution}
+                    onChange={(e) => setResolution(e.target.value)}
+                  >
+                    <option value="original">Original Size</option>
+                    <option value="512">512px</option>
+                    <option value="720">720px</option>
+                    <option value="1080">1080px</option>
+                  </select>
+                  <p className="mt-1 text-xs text-gray-500">Higher resolution increases processing time</p>
+                </div>
               </div>
             </div>
             
-            <div className="mt-6">
-              <button 
+            <div className="mt-8 flex justify-end">
+              <motion.button 
                 onClick={handleSubmit}
                 disabled={isUploading}
-                className="bg-gradient-to-r from-[#ff6b6b] via-[#ffb86c] to-[#4cf977] text-white py-3 px-6 rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+                className="btn-gradient py-3 px-8 flex items-center sparkle"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
+                <Zap className="w-5 h-5 mr-2" />
                 {isUploading ? 'Uploading...' : 'Start Processing'}
-              </button>
-              <p className="mt-2 text-xs text-[#9CA3AF]">Processing time varies based on video length and complexity</p>
+              </motion.button>
             </div>
-          </div>
+            <p className="mt-2 text-sm text-right text-gray-500">Processing time varies based on video length and settings</p>
+          </motion.div>
         )}
-      </div>
+      </motion.div>
     </section>
   );
 };

@@ -1,31 +1,90 @@
+import { motion } from "framer-motion";
+
 interface WorkflowStepsProps {
   activeStep: number;
 }
 
 const WorkflowSteps: React.FC<WorkflowStepsProps> = ({ activeStep }) => {
   return (
-    <div className="flex flex-wrap mb-10 justify-center">
-      <div className="flex flex-col items-center px-4 md:px-6 mb-6 md:mb-0">
-        <div className={`w-10 h-10 rounded-full ${activeStep >= 1 ? 'bg-[#ff6b6b]' : 'bg-gray-700'} flex items-center justify-center text-white font-semibold mb-2`}>1</div>
-        <div className="text-center">
-          <p className="font-semibold">Upload</p>
-          <p className="text-[#9CA3AF] text-sm">Select video file</p>
+    <div className="glass-panel p-6 mb-10">
+      <div className="flex flex-wrap justify-center">
+        {/* Step 1 - Upload */}
+        <div className="flex flex-col items-center px-4 md:px-8 mb-6 md:mb-0 relative">
+          <motion.div 
+            className={`w-14 h-14 rounded-full flex items-center justify-center text-white font-semibold mb-3
+              ${activeStep >= 1 ? 'bg-gradient-to-r from-[#9546FF] to-[#6a11cb]' : 'bg-gray-800 border border-gray-700'}`}
+            whileHover={{ scale: 1.05 }}
+            animate={activeStep >= 1 ? { boxShadow: '0 0 15px rgba(149, 70, 255, 0.6)' } : {}}
+          >
+            <span className="text-lg">1</span>
+            {activeStep === 1 && (
+              <motion.div 
+                className="absolute -inset-1 border-2 border-purple-500 rounded-full"
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+            )}
+          </motion.div>
+          <div className="text-center">
+            <p className="font-bold text-lg">Upload</p>
+            <p className="text-gray-400 text-sm">Select video file</p>
+          </div>
         </div>
-      </div>
-      <div className="w-10 h-1 bg-gray-700 self-center mt-4 hidden md:block"></div>
-      <div className="flex flex-col items-center px-4 md:px-6 mb-6 md:mb-0">
-        <div className={`w-10 h-10 rounded-full ${activeStep >= 2 ? 'bg-[#ffb86c]' : 'bg-gray-700'} flex items-center justify-center text-white font-semibold mb-2`}>2</div>
-        <div className="text-center">
-          <p className="font-semibold">Process</p>
-          <p className="text-[#9CA3AF] text-sm">Frame interpolation</p>
+        
+        {/* Connector Line */}
+        <div className="hidden md:flex items-center px-2">
+          <div className="w-20 h-0.5 bg-gradient-to-r from-[#9546FF]/30 to-[#6a11cb]/30"></div>
         </div>
-      </div>
-      <div className="w-10 h-1 bg-gray-700 self-center mt-4 hidden md:block"></div>
-      <div className="flex flex-col items-center px-4 md:px-6">
-        <div className={`w-10 h-10 rounded-full ${activeStep >= 3 ? 'bg-[#4cf977]' : 'bg-gray-700'} flex items-center justify-center text-white font-semibold mb-2`}>3</div>
-        <div className="text-center">
-          <p className="font-semibold">Result</p>
-          <p className="text-[#9CA3AF] text-sm">Enjoy smooth video</p>
+        
+        {/* Step 2 - Process */}
+        <div className="flex flex-col items-center px-4 md:px-8 mb-6 md:mb-0 relative">
+          <motion.div 
+            className={`w-14 h-14 rounded-full flex items-center justify-center text-white font-semibold mb-3
+              ${activeStep >= 2 ? 'bg-gradient-to-r from-[#9546FF] to-[#6a11cb]' : 'bg-gray-800 border border-gray-700'}`}
+            whileHover={{ scale: 1.05 }}
+            animate={activeStep >= 2 ? { boxShadow: '0 0 15px rgba(149, 70, 255, 0.6)' } : {}}
+          >
+            <span className="text-lg">2</span>
+            {activeStep === 2 && (
+              <motion.div 
+                className="absolute -inset-1 border-2 border-purple-500 rounded-full"
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+            )}
+          </motion.div>
+          <div className="text-center">
+            <p className="font-bold text-lg">Process</p>
+            <p className="text-gray-400 text-sm">Frame interpolation</p>
+          </div>
+        </div>
+        
+        {/* Connector Line */}
+        <div className="hidden md:flex items-center px-2">
+          <div className="w-20 h-0.5 bg-gradient-to-r from-[#9546FF]/30 to-[#6a11cb]/30"></div>
+        </div>
+        
+        {/* Step 3 - Result */}
+        <div className="flex flex-col items-center px-4 md:px-8 relative">
+          <motion.div 
+            className={`w-14 h-14 rounded-full flex items-center justify-center text-white font-semibold mb-3
+              ${activeStep >= 3 ? 'bg-gradient-to-r from-[#9546FF] to-[#6a11cb]' : 'bg-gray-800 border border-gray-700'}`}
+            whileHover={{ scale: 1.05 }}
+            animate={activeStep >= 3 ? { boxShadow: '0 0 15px rgba(149, 70, 255, 0.6)' } : {}}
+          >
+            <span className="text-lg">3</span>
+            {activeStep === 3 && (
+              <motion.div 
+                className="absolute -inset-1 border-2 border-purple-500 rounded-full"
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+            )}
+          </motion.div>
+          <div className="text-center">
+            <p className="font-bold text-lg">Result</p>
+            <p className="text-gray-400 text-sm">Enhanced video</p>
+          </div>
         </div>
       </div>
     </div>

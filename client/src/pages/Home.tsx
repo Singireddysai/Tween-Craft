@@ -4,6 +4,7 @@ import VideoProcessing from "@/components/VideoProcessing";
 import WorkflowSteps from "@/components/WorkflowSteps";
 import RecentOutputs from "@/components/RecentOutputs";
 import { motion } from "framer-motion";
+import { Zap, Code, Info } from "lucide-react";
 
 interface HomeProps {
   socket: WebSocket | null;
@@ -63,16 +64,40 @@ const Home: React.FC<HomeProps> = ({ socket }) => {
         className="mb-12 text-center" 
         variants={itemVariants}
       >
-        <h1 className="text-4xl md:text-6xl font-bold violet-gradient-text mb-4">
-          GMFSS Video Enhancer
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+          <span className="violet-gradient-text">GMFSS</span> Video Enhancer
         </h1>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
           Transform your videos with state-of-the-art frame interpolation using GMFSS Fortuna
         </p>
+        
+        {/* Feature Pills */}
+        <div className="flex flex-wrap justify-center gap-3 mt-8">
+          <div className="bg-gray-900/50 backdrop-blur-sm px-4 py-2 rounded-full border border-purple-900/20 flex items-center">
+            <Zap className="h-4 w-4 text-purple-400 mr-2" />
+            <span className="text-sm">6x frame rate</span>
+          </div>
+          <div className="bg-gray-900/50 backdrop-blur-sm px-4 py-2 rounded-full border border-purple-900/20 flex items-center">
+            <svg className="h-4 w-4 text-purple-400 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 14H8" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M5 18H10" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M12 14H19" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M14 18H19" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M7 9C8.10457 9 9 8.10457 9 7C9 5.89543 8.10457 5 7 5C5.89543 5 5 5.89543 5 7C5 8.10457 5.89543 9 7 9Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M17 9C18.1046 9 19 8.10457 19 7C19 5.89543 18.1046 5 17 5C15.8954 5 15 5.89543 15 7C15 8.10457 15.8954 9 17 9Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <span className="text-sm">Smooth motion</span>
+          </div>
+          <div className="bg-gray-900/50 backdrop-blur-sm px-4 py-2 rounded-full border border-purple-900/20 flex items-center">
+            <Code className="h-4 w-4 text-purple-400 mr-2" />
+            <span className="text-sm">ComfyUI powered</span>
+          </div>
+        </div>
       </motion.div>
       
-      {/* Glowing Orb Effect */}
+      {/* Glowing Orb Effects */}
       <div className="fixed -top-20 right-10 w-60 h-60 rounded-full bg-purple-600/20 blur-3xl pointer-events-none"></div>
+      <div className="fixed -bottom-40 left-10 w-80 h-80 rounded-full bg-purple-900/20 blur-3xl pointer-events-none"></div>
       
       {/* Workflow Steps */}
       <motion.div variants={itemVariants}>
@@ -105,16 +130,44 @@ const Home: React.FC<HomeProps> = ({ socket }) => {
       
       {/* Recent Outputs Section */}
       <motion.div variants={itemVariants}>
-        <h2 className="text-2xl font-bold mb-6 violet-gradient-text">Recent Outputs</h2>
         <RecentOutputs />
+      </motion.div>
+      
+      {/* Info Section */}
+      <motion.div 
+        className="mb-16" 
+        variants={itemVariants}
+      >
+        <div className="glass-panel p-8 border border-purple-900/20 rounded-xl backdrop-blur-md">
+          <div className="flex items-center mb-6">
+            <Info className="w-6 h-6 mr-3 text-purple-400" />
+            <h2 className="text-2xl font-bold violet-gradient-text">About GMFSS Fortuna</h2>
+          </div>
+          
+          <div className="text-gray-300 space-y-4">
+            <p>
+              GMFSS Fortuna is a state-of-the-art video frame interpolation model that creates smooth, 
+              high-quality intermediate frames between existing frames in your videos.
+            </p>
+            <p>
+              This web application provides an easy-to-use interface for the GMFSS Fortuna workflow in ComfyUI, 
+              allowing you to transform standard videos into silky-smooth 60fps content with just a few clicks.
+            </p>
+          </div>
+        </div>
       </motion.div>
       
       {/* Footer */}
       <motion.footer 
-        className="mt-20 border-t border-purple-900/30 pt-8 text-center text-gray-400 text-sm"
+        className="mt-16 border-t border-purple-900/30 pt-8 text-center text-gray-400 text-sm"
         variants={itemVariants}
       >
         <p>© 2025 GMFSS Video Enhancer - Powered by GMFSS Fortuna</p>
+        <div className="mt-2 flex justify-center space-x-4">
+          <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">About</a>
+          <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Documentation</a>
+          <a href="https://github.com/topics/gmfss" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-purple-400 transition-colors">GitHub</a>
+        </div>
       </motion.footer>
     </motion.main>
   );

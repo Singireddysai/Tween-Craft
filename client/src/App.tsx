@@ -66,30 +66,27 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen flex flex-col">
-        <header className="py-6 border-b border-gray-800">
+        <header className="py-6 border-b border-purple-900/30 backdrop-blur-sm sticky top-0 z-50 bg-background/80">
           <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
-            <div className="flex items-center space-x-2">
-              <div className="w-12 h-12 bg-gradient-to-r from-[#ff6b6b] via-[#ffb86c] to-[#4cf977] rounded-lg flex items-center justify-center">
+            <div className="flex items-center space-x-3">
+              <div className="w-12 h-12 bg-gradient-to-r from-purple-700 to-purple-400 rounded-lg flex items-center justify-center shadow-lg shadow-purple-900/30">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-['K2D'] font-bold gradient-text">Tween Craft</h1>
+              <h1 className="text-2xl md:text-3xl font-bold violet-gradient-text">GMFSS Video Enhancer</h1>
             </div>
-            <nav>
-              <a href="#" className="text-[#9CA3AF] hover:text-white transition">Documentation</a>
+            <nav className="flex items-center space-x-6">
+              <a href="https://github.com/topics/gmfss" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-purple-400 transition-colors hidden md:block">GitHub</a>
+              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Docs</a>
+              <a href="#" className="bg-gray-900/50 backdrop-blur-sm px-4 py-2 rounded-full border border-purple-900/20 hover:border-purple-500/40 transition-all text-sm">
+                About
+              </a>
             </nav>
           </div>
         </header>
         
         <Router />
-        
-        <footer className="mt-16 border-t border-gray-800 py-8">
-          <div className="container mx-auto px-4 text-center text-sm text-[#9CA3AF]">
-            <p className="mb-2">Tween Craft - Video Frame Interpolation Using GMFSS Fortuna</p>
-            <p>Powered by ComfyUI - Version 1.0.0</p>
-          </div>
-        </footer>
         
         <Toaster />
       </div>

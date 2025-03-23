@@ -158,7 +158,7 @@ const VideoResults: React.FC<VideoResultsProps> = ({ videoPath, processingTime }
         <div className="flex justify-center">
           <motion.button 
             className="btn-gradient py-3 px-8 flex items-center"
-            onClick={() => navigate("/")}
+            onClick={() => setLocation("/")}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >

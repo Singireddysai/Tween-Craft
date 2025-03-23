@@ -66,20 +66,19 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen flex flex-col">
-        <header className="py-6 border-b border-purple-900/30 backdrop-blur-sm sticky top-0 z-50 bg-background/80">
-          <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-700 to-purple-400 rounded-lg flex items-center justify-center shadow-lg shadow-purple-900/30">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <header className="py-3 sticky top-0 z-50 glass-nav">
+          <div className="container mx-auto px-4 flex justify-between items-center">
+            <div className="flex items-center">
+              <div className="w-10 h-10 bg-gradient-to-r from-purple-700 to-purple-400 rounded-lg flex items-center justify-center shadow-lg shadow-purple-900/20">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h1 className="text-2xl md:text-3xl font-bold violet-gradient-text tracking-tight">TWEEN CRAFT</h1>
             </div>
-            <nav className="flex items-center space-x-6">
-              <a href="https://github.com/topics/gmfss" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-purple-400 transition-colors hidden md:block">GitHub</a>
-              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Docs</a>
-              <a href="#" className="bg-gray-900/50 backdrop-blur-sm px-4 py-2 rounded-full border border-purple-900/20 hover:border-purple-500/40 transition-all text-sm">
+            <nav className="flex items-center space-x-1">
+              <a href="https://github.com/topics/gmfss" target="_blank" rel="noopener noreferrer" className="nav-link text-gray-300">GitHub</a>
+              <a href="#" className="nav-link text-gray-300">Docs</a>
+              <a href="#" className="ml-1 bg-gradient-to-r from-purple-700/80 to-purple-500/80 px-3 py-1.5 rounded-full border border-purple-500/30 text-white shadow-sm transition-all hover:shadow-purple-500/20 text-sm">
                 About
               </a>
             </nav>

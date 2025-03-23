@@ -64,20 +64,20 @@ const Home: React.FC<HomeProps> = ({ socket }) => {
         className="mb-12 text-center" 
         variants={itemVariants}
       >
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
           <span className="violet-gradient-text">TWEEN</span> CRAFT
         </h1>
-        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+        <p className="text-xl text-gray-300 max-w-3xl mx-auto opacity-90">
           Professional video frame interpolation with GMFSS Fortuna technology
         </p>
         
         {/* Feature Pills */}
         <div className="flex flex-wrap justify-center gap-3 mt-8">
-          <div className="bg-gray-900/50 backdrop-blur-sm px-4 py-2 rounded-full border border-purple-900/20 flex items-center">
+          <div className="glass-nav px-4 py-2 rounded-full border border-purple-500/20 flex items-center shadow-sm">
             <Zap className="h-4 w-4 text-purple-400 mr-2" />
             <span className="text-sm">6x frame rate</span>
           </div>
-          <div className="bg-gray-900/50 backdrop-blur-sm px-4 py-2 rounded-full border border-purple-900/20 flex items-center">
+          <div className="glass-nav px-4 py-2 rounded-full border border-purple-500/20 flex items-center shadow-sm">
             <svg className="h-4 w-4 text-purple-400 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M5 14H8" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M5 18H10" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
@@ -88,7 +88,7 @@ const Home: React.FC<HomeProps> = ({ socket }) => {
             </svg>
             <span className="text-sm">Smooth motion</span>
           </div>
-          <div className="bg-gray-900/50 backdrop-blur-sm px-4 py-2 rounded-full border border-purple-900/20 flex items-center">
+          <div className="glass-nav px-4 py-2 rounded-full border border-purple-500/20 flex items-center shadow-sm">
             <Code className="h-4 w-4 text-purple-400 mr-2" />
             <span className="text-sm">ComfyUI powered</span>
           </div>
@@ -138,18 +138,20 @@ const Home: React.FC<HomeProps> = ({ socket }) => {
         className="mb-16" 
         variants={itemVariants}
       >
-        <div className="glass-panel p-8 border border-purple-900/20 rounded-xl backdrop-blur-md">
-          <div className="flex items-center mb-6">
+        <div className="glass-panel p-8 border border-purple-500/20 rounded-xl backdrop-blur-md bg-opacity-60 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-40 h-40 rounded-full bg-purple-700/10 blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+          
+          <div className="flex items-center mb-6 relative z-10">
             <Info className="w-6 h-6 mr-3 text-purple-400" />
             <h2 className="text-2xl font-bold violet-gradient-text">About TWEEN CRAFT</h2>
           </div>
           
-          <div className="text-gray-300 space-y-4">
-            <p>
+          <div className="text-gray-300 space-y-4 relative z-10">
+            <p className="leading-relaxed">
               TWEEN CRAFT is a professional video frame interpolation application that enhances your videos with smooth, 
               fluid motion using state-of-the-art GMFSS Fortuna technology.
             </p>
-            <p>
+            <p className="leading-relaxed">
               Whether you're a content creator, filmmaker, or video enthusiast, TWEEN CRAFT provides a straightforward 
               interface to transform standard videos into high frame-rate content with exceptional quality and minimal artifacts.
             </p>
@@ -159,14 +161,16 @@ const Home: React.FC<HomeProps> = ({ socket }) => {
       
       {/* Footer */}
       <motion.footer 
-        className="mt-16 border-t border-purple-900/30 pt-8 text-center text-gray-400 text-sm"
+        className="mt-16 pt-8 text-center text-gray-300 text-sm"
         variants={itemVariants}
       >
-        <p>© 2025 TWEEN CRAFT - Professional Video Interpolation</p>
-        <div className="mt-2 flex justify-center space-x-4">
-          <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">About</a>
-          <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Documentation</a>
-          <a href="https://github.com/topics/gmfss" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-purple-400 transition-colors">GitHub</a>
+        <div className="glass-nav py-4 rounded-lg">
+          <p className="opacity-80">© 2025 TWEEN CRAFT - Professional Video Interpolation</p>
+          <div className="mt-3 flex justify-center space-x-6">
+            <a href="#" className="nav-link">About</a>
+            <a href="#" className="nav-link">Documentation</a>
+            <a href="https://github.com/topics/gmfss" target="_blank" rel="noopener noreferrer" className="nav-link">GitHub</a>
+          </div>
         </div>
       </motion.footer>
     </motion.main>

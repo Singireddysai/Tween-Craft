@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/motion-graphic.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="title-container">
+      <h1 class="title">Tween Craft</h1>
+    </div>
+    <div class="upload-container">
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input
+          id="uploadInput btn"
+          type="file"
+          name="videoUpload"
+          accept="video/*"
+        />
+        <button id="videoUploadBtn btn" type="submit">Upload</button>
+      </form>
+    </div>
+    <div id="loader-container" style="display: none">
+      <div class="loader"></div>
+    </div>
+
+    <video
+      id="videoPreview"
+      controls
+      autoplay
+      loop
+      width="400"
+      style="display: none"
+    ></video>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -65,10 +65,10 @@ const Home: React.FC<HomeProps> = ({ socket }) => {
         variants={itemVariants}
       >
         <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-          <span className="violet-gradient-text">GMFSS</span> Video Enhancer
+          <span className="violet-gradient-text">TWEEN</span> CRAFT
         </h1>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-          Transform your videos with state-of-the-art frame interpolation using GMFSS Fortuna
+          Professional video frame interpolation with GMFSS Fortuna technology
         </p>
         
         {/* Feature Pills */}
@@ -141,17 +141,17 @@ const Home: React.FC<HomeProps> = ({ socket }) => {
         <div className="glass-panel p-8 border border-purple-900/20 rounded-xl backdrop-blur-md">
           <div className="flex items-center mb-6">
             <Info className="w-6 h-6 mr-3 text-purple-400" />
-            <h2 className="text-2xl font-bold violet-gradient-text">About GMFSS Fortuna</h2>
+            <h2 className="text-2xl font-bold violet-gradient-text">About TWEEN CRAFT</h2>
           </div>
           
           <div className="text-gray-300 space-y-4">
             <p>
-              GMFSS Fortuna is a state-of-the-art video frame interpolation model that creates smooth, 
-              high-quality intermediate frames between existing frames in your videos.
+              TWEEN CRAFT is a professional video frame interpolation application that enhances your videos with smooth, 
+              fluid motion using state-of-the-art GMFSS Fortuna technology.
             </p>
             <p>
-              This web application provides an easy-to-use interface for the GMFSS Fortuna workflow in ComfyUI, 
-              allowing you to transform standard videos into silky-smooth 60fps content with just a few clicks.
+              Whether you're a content creator, filmmaker, or video enthusiast, TWEEN CRAFT provides a straightforward 
+              interface to transform standard videos into high frame-rate content with exceptional quality and minimal artifacts.
             </p>
           </div>
         </div>
@@ -162,7 +162,7 @@ const Home: React.FC<HomeProps> = ({ socket }) => {
         className="mt-16 border-t border-purple-900/30 pt-8 text-center text-gray-400 text-sm"
         variants={itemVariants}
       >
-        <p>© 2025 GMFSS Video Enhancer - Powered by GMFSS Fortuna</p>
+        <p>© 2025 TWEEN CRAFT - Professional Video Interpolation</p>
         <div className="mt-2 flex justify-center space-x-4">
           <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">About</a>
           <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Documentation</a>

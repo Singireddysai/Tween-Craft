@@ -123,11 +123,11 @@ const Results = () => {
         className="mb-12 text-center" 
         variants={itemVariants}
       >
-        <h1 className="text-4xl md:text-5xl font-bold violet-gradient-text mb-4">
-          Processing Complete
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <span className="violet-gradient-text">TWEEN</span> COMPLETE
         </h1>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-          Your enhanced video is ready to view and download
+          Your professional-grade interpolated video is ready
         </p>
       </motion.div>
       

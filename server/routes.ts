@@ -111,7 +111,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(200).json({ 
         message: "File uploaded successfully", 
         fileId: fileInfo.id, 
-        fileName: req.file.originalname
+        fileName: req.file.originalname,
+        filePath: filePath
       });
     } catch (error) {
       console.error("Error uploading file:", error);

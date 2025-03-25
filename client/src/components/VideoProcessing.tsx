@@ -35,9 +35,10 @@ const VideoProcessing: React.FC<VideoProcessingProps> = ({
         setProgress(10);
         setStage("analyzing");
         
+        console.log("Sending process request with path:", filePath);
         const response = await apiRequest("POST", `/api/process/${fileId}`, {
-          filePath,
-          multiplier
+          filePath: filePath,
+          multiplier: multiplier
         });
         
         if (!response.ok) {

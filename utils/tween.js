@@ -9,12 +9,9 @@ import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// ComfyUI server address
-// In Replit environment, we need to use a public URL
-const serverAddress = process.env.COMFYUI_SERVER || "127.0.0.1:8188";
+// ComfyUI server address - typically running locally
+const serverAddress = "127.0.0.1:8188";
 const clientId = uuidv4();
-
-console.log("Connecting to ComfyUI server at:", serverAddress);
 
 // Load the workflow template
 const workflowPath = path.join(__dirname, "gmfss_workflow.json");
@@ -24,13 +21,7 @@ const workflowPath = path.join(__dirname, "gmfss_workflow.json");
  */
 async function queuePrompt(prompt) {
   try {
-    // Determine protocol
-    const protocol = serverAddress.startsWith('https://') ? 'https://' : 'http://';
-    const address = serverAddress.replace(/^https?:\/\//, '');
-    const url = `${protocol}${address}/prompt`;
-    
-    console.log("Queuing prompt to ComfyUI at:", url);
-    const response = await axios.post(url, {
+    const response = await axios.post(`http://${serverAddress}/prompt`, {
       prompt: prompt,
       client_id: clientId,
     });
@@ -47,13 +38,10 @@ async function queuePrompt(prompt) {
 async function getFile(filename, subfolder, folderType) {
   const params = new URLSearchParams({ filename, subfolder, type: folderType });
   try {
-    // Determine protocol
-    const protocol = serverAddress.startsWith('https://') ? 'https://' : 'http://';
-    const address = serverAddress.replace(/^https?:\/\//, '');
-    const url = `${protocol}${address}/view?${params.toString()}`;
-    
-    console.log("Fetching file from ComfyUI at:", url);
-    const response = await axios.get(url, { responseType: "arraybuffer" });
+    const response = await axios.get(
+      `http://${serverAddress}/view?${params.toString()}`,
+      { responseType: "arraybuffer" }
+    );
     return response.data;
   } catch (error) {
     console.error("Error fetching file:", error.message);
@@ -66,13 +54,9 @@ async function getFile(filename, subfolder, folderType) {
  */
 async function getHistory(promptId) {
   try {
-    // Determine protocol
-    const protocol = serverAddress.startsWith('https://') ? 'https://' : 'http://';
-    const address = serverAddress.replace(/^https?:\/\//, '');
-    const url = `${protocol}${address}/history/${promptId}`;
-    
-    console.log("Fetching history from ComfyUI at:", url);
-    const response = await axios.get(url);
+    const response = await axios.get(
+      `http://${serverAddress}/history/${promptId}`
+    );
     return response.data;
   } catch (error) {
     console.error("Error fetching history:", error.message);
@@ -152,13 +136,7 @@ const tween = async (videoPath, multiplier = 6) => {
     prompt["6"].inputs.multiplier = parseInt(multiplier, 10);
 
     // Connect to ComfyUI WebSocket
-    // Determine protocol based on server address
-    const protocol = serverAddress.startsWith('https://') ? 'wss://' : 'ws://';
-    const wsAddress = serverAddress.replace(/^https?:\/\//, '');
-    const wsUrl = `${protocol}${wsAddress}/ws?clientId=${clientId}`;
-    
-    console.log("Connecting to ComfyUI WebSocket at:", wsUrl);
-    const ws = new WebSocket(wsUrl);
+    const ws = new WebSocket(`ws://${serverAddress}/ws?clientId=${clientId}`);
 
     return new Promise((resolve, reject) => {
       ws.on("open", async () => {

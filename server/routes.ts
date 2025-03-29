@@ -184,6 +184,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get video results by fileId
+  app.get("/api/results/:fileId", (req, res) => {
+    const { fileId } = req.params;
+    
+    // Find all video files
+    fs.readdir(OUTPUT_DIR, (err, files) => {
+      if (err) {
+        return res.status(500).json({ error: "Failed to read directory" });
+      }
+      
+      // Get the most recent video
+      const videoFiles = files
+        .filter(file => file.endsWith('.mp4'))
+        .map((file) => ({
+          name: file,
+          time: fs.statSync(path.join(OUTPUT_DIR, file)).mtime.getTime(),
+        }))
+        .sort((a, b) => b.time - a.time); // Sort by most recent
+        
+      if (videoFiles.length === 0) {
+        return res.status(404).json({ error: "No videos found" });
+      }
+      
+      // In a real app, we'd use the fileId to find the exact video
+      // For this demo, we'll just return the most recent one
+      const videoFile = videoFiles[0];
+      res.json({ 
+        outputPath: `/videos/${videoFile.name}`,
+        processingTime: 3 // Mock processing time
+      });
+    });
+  });
+  
   // Get latest video
   app.get("/api/latest-video", (req, res) => {
     fs.readdir(OUTPUT_DIR, (err, files) => {

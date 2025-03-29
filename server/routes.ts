@@ -237,6 +237,84 @@ export async function registerRoutes(app: Express): Promise<Server> {
       time: new Date().toISOString()
     });
   });
+  
+  // Configuration endpoint to update ComfyUI server address
+  app.post("/api/config", (req, res) => {
+    try {
+      const { comfyuiServer } = req.body;
+      
+      if (!comfyuiServer) {
+        return res.status(400).json({ error: "ComfyUI server URL is required" });
+      }
+      
+      // Validate the URL
+      try {
+        new URL(comfyuiServer);
+      } catch (error) {
+        return res.status(400).json({ error: "Invalid URL format" });
+      }
+      
+      // Store in process.env
+      process.env.COMFYUI_SERVER = comfyuiServer;
+      
+      res.status(200).json({ 
+        message: "Configuration updated successfully", 
+        config: { comfyuiServer }
+      });
+    } catch (error) {
+      console.error("Error updating configuration:", error);
+      res.status(500).json({ error: "Failed to update configuration" });
+    }
+  });
+  
+  // Test ComfyUI connection
+  app.post("/api/test-comfyui", async (req, res) => {
+    try {
+      const { url } = req.body;
+      
+      if (!url) {
+        return res.status(400).json({ error: "ComfyUI server URL is required" });
+      }
+      
+      // Validate the URL
+      try {
+        new URL(url);
+      } catch (error) {
+        return res.status(400).json({ error: "Invalid URL format" });
+      }
+      
+      // Test connection to ComfyUI server
+      const axios = (await import('axios')).default;
+      
+      // Determine protocol
+      const protocol = url.startsWith('https://') ? 'https://' : 'http://';
+      const address = url.replace(/^https?:\/\//, '');
+      const systemStatsUrl = `${protocol}${address}/system_stats`;
+      
+      try {
+        const response = await axios.get(systemStatsUrl, { timeout: 5000 });
+        
+        if (response.status === 200) {
+          res.status(200).json({ 
+            message: "Connection successful", 
+            status: "connected",
+            systemInfo: response.data
+          });
+        } else {
+          throw new Error(`Received status code: ${response.status}`);
+        }
+      } catch (error) {
+        console.error("Error connecting to ComfyUI:", error);
+        res.status(502).json({ 
+          error: "Failed to connect to ComfyUI server", 
+          details: error instanceof Error ? error.message : "Unknown error"
+        });
+      }
+    } catch (error) {
+      console.error("Error testing ComfyUI connection:", error);
+      res.status(500).json({ error: "Failed to process request" });
+    }
+  });
 
   // Serve video files
   app.use("/videos", (req, res, next) => {

@@ -16,6 +16,30 @@ const __dirname = dirname(__filename);
 const UPLOAD_DIR = path.join(__dirname, "..", "uploads");
 const OUTPUT_DIR = path.join(__dirname, "..", "output");
 
+// ComfyUI output directory (change this to match your ComfyUI installation path)
+// This is where ComfyUI saves the processed videos
+const COMFYUI_OUTPUT_DIR = process.env.COMFYUI_OUTPUT_DIR || 
+  "C:\\ComfyUI_windows_portable_nvidia_cu121_or_cpu\\ComfyUI_windows_portable\\ComfyUI\\output";
+
+// We'll check both directories for videos
+function getVideoOutputDirs(): string[] {
+  const dirs = [OUTPUT_DIR];
+  
+  // Only add ComfyUI dir if it exists and is accessible
+  try {
+    if (fs.existsSync(COMFYUI_OUTPUT_DIR)) {
+      dirs.push(COMFYUI_OUTPUT_DIR);
+    } else {
+      console.log(`ComfyUI output directory not found at: ${COMFYUI_OUTPUT_DIR}`);
+    }
+  } catch (error) {
+    const err = error as Error;
+    console.log(`Cannot access ComfyUI output directory: ${err.message}`);
+  }
+  
+  return dirs;
+}
+
 // Create directories if they don't exist
 if (!fs.existsSync(UPLOAD_DIR)) {
   fs.mkdirSync(UPLOAD_DIR, { recursive: true });
@@ -184,85 +208,118 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Interface for video file info
+  interface VideoFileInfo {
+    name: string;
+    path: string;
+    fullPath: string;
+    dir: string;
+    time: number;
+    date: string;
+  }
+
+  // Function to get all video files from all output directories
+  const getAllVideoFiles = async (): Promise<VideoFileInfo[]> => {
+    // Get all video directories to check
+    const dirs = getVideoOutputDirs();
+    let allVideoFiles: VideoFileInfo[] = [];
+    
+    // Process each directory
+    for (const dir of dirs) {
+      try {
+        const files = fs.readdirSync(dir);
+        const videoFiles = files
+          .filter(file => file.endsWith('.mp4'))
+          .map((file) => {
+            const stats = fs.statSync(path.join(dir, file));
+            return {
+              name: file,
+              path: `/videos/${file}`,
+              fullPath: path.join(dir, file),
+              dir: dir,
+              time: stats.mtime.getTime(),
+              date: stats.mtime.toISOString()
+            };
+          });
+        
+        allVideoFiles = [...allVideoFiles, ...videoFiles];
+      } catch (error) {
+        const err = error as Error;
+        console.error(`Error reading directory ${dir}:`, err);
+      }
+    }
+    
+    // Sort all videos by time
+    return allVideoFiles.sort((a, b) => b.time - a.time);
+  };
+
   // Get video results by fileId
-  app.get("/api/results/:fileId", (req, res) => {
+  app.get("/api/results/:fileId", async (req, res) => {
     const { fileId } = req.params;
     
-    // Find all video files
-    fs.readdir(OUTPUT_DIR, (err, files) => {
-      if (err) {
-        return res.status(500).json({ error: "Failed to read directory" });
-      }
+    try {
+      // Get all video files from all directories
+      const videoFiles = await getAllVideoFiles();
       
-      // Get the most recent video
-      const videoFiles = files
-        .filter(file => file.endsWith('.mp4'))
-        .map((file) => ({
-          name: file,
-          time: fs.statSync(path.join(OUTPUT_DIR, file)).mtime.getTime(),
-        }))
-        .sort((a, b) => b.time - a.time); // Sort by most recent
-        
       if (videoFiles.length === 0) {
         return res.status(404).json({ error: "No videos found" });
       }
       
-      // In a real app, we'd use the fileId to find the exact video
-      // For this demo, we'll just return the most recent one
+      // For now, we'll just return the most recent video
+      // In a production app, we would match with the fileId
       const videoFile = videoFiles[0];
+      
+      console.log("Serving video result:", videoFile);
+      
       res.json({ 
         outputPath: `/videos/${videoFile.name}`,
-        processingTime: 3 // Mock processing time
+        processingTime: Math.floor((Date.now() - parseInt(fileId, 10)) / 1000) || 3
       });
-    });
+    } catch (error) {
+      const err = error as Error;
+      console.error("Error getting video results:", err);
+      res.status(500).json({ error: "Failed to get video results" });
+    }
   });
   
   // Get latest video
-  app.get("/api/latest-video", (req, res) => {
-    fs.readdir(OUTPUT_DIR, (err, files) => {
-      if (err) {
-        return res.status(500).json({ error: "Failed to read directory" });
-      }
-
-      const videoFiles = files
-        .filter(file => file.endsWith('.mp4'))
-        .map((file) => ({
-          name: file,
-          time: fs.statSync(path.join(OUTPUT_DIR, file)).mtime.getTime(),
-        }))
-        .sort((a, b) => b.time - a.time); // Sort by most recent
-
+  app.get("/api/latest-video", async (req, res) => {
+    try {
+      // Get all video files from all directories
+      const videoFiles = await getAllVideoFiles();
+      
       if (videoFiles.length === 0) {
         return res.status(404).json({ error: "No videos found" });
       }
-
+      
       res.json({ video: `/videos/${videoFiles[0].name}` });
-    });
+    } catch (error) {
+      const err = error as Error;
+      console.error("Error getting latest video:", err);
+      res.status(500).json({ error: "Failed to get latest video" });
+    }
   });
 
   // Get recent videos
-  app.get("/api/recent-videos", (req, res) => {
-    fs.readdir(OUTPUT_DIR, (err, files) => {
-      if (err) {
-        return res.status(500).json({ error: "Failed to read directory" });
-      }
-
-      const videoFiles = files
-        .filter(file => file.endsWith('.mp4'))
-        .map((file) => {
-          const stats = fs.statSync(path.join(OUTPUT_DIR, file));
-          return {
-            name: file,
-            path: `/videos/${file}`,
-            time: stats.mtime.getTime(),
-            date: stats.mtime.toISOString()
-          };
-        })
-        .sort((a, b) => b.time - a.time) // Sort by most recent
-        .slice(0, 6); // Get only the 6 most recent
-
-      res.json({ videos: videoFiles });
-    });
+  app.get("/api/recent-videos", async (req, res) => {
+    try {
+      // Get all video files from all directories
+      const videoFiles = await getAllVideoFiles();
+      
+      // Map the video files to the expected format
+      const formattedFiles = videoFiles.slice(0, 6).map(file => ({
+        name: file.name,
+        path: file.path,
+        date: file.date,
+        time: Math.floor((Date.now() - file.time) / 1000)
+      }));
+      
+      res.json({ videos: formattedFiles });
+    } catch (error) {
+      const err = error as Error;
+      console.error("Error getting recent videos:", err);
+      res.status(500).json({ error: "Failed to get recent videos" });
+    }
   });
   
   // API health check endpoint
@@ -275,15 +332,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   });
 
-  // Serve video files
+  // Serve video files from multiple directories
   app.use("/videos", (req, res, next) => {
-    // Create a simple static file server
-    const filePath = path.join(OUTPUT_DIR, req.path);
-    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-      res.sendFile(filePath);
-    } else {
-      next();
+    // Get the requested file name from the path
+    const fileName = req.path.split('/').pop();
+    if (!fileName) return next();
+    
+    // Check all possible directories for the file
+    const dirs = getVideoOutputDirs();
+    
+    // Try each directory until we find the file
+    for (const dir of dirs) {
+      const filePath = path.join(dir, fileName);
+      if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+        return res.sendFile(filePath);
+      }
     }
+    
+    // If we get here, the file wasn't found in any directory
+    next();
   });
   
   return httpServer;

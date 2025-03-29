@@ -145,6 +145,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const startTime = Date.now();
       const outputPath = await tween(filePath, multiplier);
       const processingTime = Math.floor((Date.now() - startTime) / 1000);
+      
+      // Extract just the filename from the output path
+      const outputFileName = path.basename(outputPath);
+      const webOutputPath = `/videos/${outputFileName}`;
 
       // Broadcast completion status
       wss.clients.forEach((client) => {
@@ -152,7 +156,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           client.send(JSON.stringify({
             type: "processing_complete",
             fileId,
-            outputPath,
+            outputPath: webOutputPath,
             processingTime
           }));
         }
@@ -160,7 +164,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       res.status(200).json({ 
         message: "Processing complete", 
-        outputPath,
+        outputPath: webOutputPath,
         processingTime
       });
     } catch (error) {

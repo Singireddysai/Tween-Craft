@@ -13,6 +13,9 @@ const __dirname = dirname(__filename);
 const serverAddress = "127.0.0.1:8188";
 const clientId = uuidv4();
 
+// Output directory
+const outputDir = path.join(__dirname, "..", "output");
+
 // Load the workflow template
 const workflowPath = path.join(__dirname, "gmfss_workflow.json");
 
@@ -116,7 +119,10 @@ function saveVideo(videoData, outputDir) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
   
-  const filePath = path.join(outputDir, videoData.filename);
+  const timestamp = Date.now();
+  const filename = `processed_${timestamp}.mp4`;
+  const filePath = path.join(outputDir, filename);
+  
   fs.writeFileSync(filePath, videoData.data);
   console.log(`Video saved to ${filePath}`);
   return filePath;
@@ -145,9 +151,6 @@ const tween = async (videoPath, multiplier = 6) => {
         try {
           // Process the video
           const media = await getMedia(ws, prompt);
-
-          // Output directory
-          const outputDir = path.join(__dirname, "..", "output");
 
           let savedFilePath = "";
           

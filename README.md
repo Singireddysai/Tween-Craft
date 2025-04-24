@@ -10,3 +10,5 @@ the app is run by cloning this repo and be sure to install comfyui in the local 
 steps to install the dependancies:
 1)rm -rf package-lock.json node_modules
 2)npm install
+[![Watch the video](https://img.youtube.com/vi/fvoIUiUS2yI/0.jpg)](https://youtu.be/fvoIUiUS2yI)
+

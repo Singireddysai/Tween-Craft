@@ -50,7 +50,7 @@
 
 ### Motion Sequence
 <p align="center">
-  <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/lingo%20Lfps_gif.gif" width="400" alt="Low FPS Motion">
+  <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/lingo%20Lfps_gif.gif" width="400" alt="Low FPS Motion" style="margin-right: 40px;">
   <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/lingo%20Hfps_gif.gif" width="400" alt="High FPS Motion">
   <br>
   <em>Original (Left) vs Enhanced 8x (Right)</em>

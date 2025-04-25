@@ -152,12 +152,6 @@ Reconstruction - New high-frame-rate video is assembled
 [Vimeo Triplet Dataset](https://paperswithcode.com/dataset/vimeo90k-1)
 
 
-
-
-### 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-
 <div align="center">
   <p>Developed with ❤️ by <a href="https://github.com/Singireddysai">Singireddysai</a></p>
   <p>Give this project a ⭐ if you found it helpful!</p>

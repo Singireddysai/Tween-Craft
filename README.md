@@ -34,7 +34,7 @@ Watch the demonstration video to see Tween-Craft in action:
 
 ### Animation Enhancement
 <p align="center">
-  <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/animation%20Lfps_gif.gif?raw=true" width="400" height="450" alt="Low FPS Animation" style="margin-right: 20px;">
+  <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/animation%20Lfps_gif.gif?raw=true" width="400" height="450" alt="Low FPS Animation" hspace="10">
   <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/animation%20Hfps_gif.gif?raw=true" width="400" height="450" alt="High FPS Animation">
   <br>
   <em>Original (Left) vs Enhanced 8x (Right)</em>
@@ -42,7 +42,7 @@ Watch the demonstration video to see Tween-Craft in action:
 
 ### Speaking Scene
 <p align="center">
-  <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/deal%20wit%20it%20Lfps_gif.gif?raw=true" width="400" alt="Low FPS Speaking" style="margin-right: 20px;">
+  <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/deal%20wit%20it%20Lfps_gif.gif?raw=true" width="400" alt="Low FPS Speaking" hspace="10">
   <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/deal%20wit%20it%20Hfps_gif.gif?raw=true" width="400" alt="High FPS Speaking">
   <br>
   <em>Original (Left) vs Enhanced 8x (Right)</em>
@@ -50,7 +50,7 @@ Watch the demonstration video to see Tween-Craft in action:
 
 ### Motion Sequence
 <p align="center">
-  <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/lingo%20Lfps_gif.gif" width="400" alt="Low FPS Motion" style="margin-right: 20px;">
+  <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/lingo%20Lfps_gif.gif" width="400" alt="Low FPS Motion" hspace="10">
   <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/lingo%20Hfps_gif.gif" width="400" alt="High FPS Motion">
   <br>
   <em>Original (Left) vs Enhanced 8x (Right)</em>
@@ -83,13 +83,13 @@ Tween-Craft leverages advanced frame interpolation technology:
    cd Tween-Craft
    ```
 
-Install dependencies:
+2. Install dependencies:
   ```bash
     rm -rf package-lock.json node_modules
     npm install
   ```
 
-Make sure ComfyUI is installed and configured on your system:
+3. Make sure ComfyUI is installed and configured on your system:
   ```bash
   git clone https://github.com/comfyanonymous/ComfyUI.git
   cd ComfyUI
@@ -97,38 +97,38 @@ Make sure ComfyUI is installed and configured on your system:
   ```
 
 
-Start the application:
+4. Start the application:
   ```bash
   npm run dev
   ```
 
-###💡 Usage
+### 💡 Usage
 
-####Upload Video - Select your video file for processing
+#### Upload Video - Select your video file for processing
 <br>
 Supported formats: MP4, AVI, MOV, WebM
 Max recommended file size: 500MB (depends on your hardware)
 
 
-####Configure Settings - Choose desired output dimensions and frame rate multiplier
+#### Configure Settings - Choose desired output dimensions and frame rate multiplier
 <br>
 Output resolution: (customizable)
 Frame rate multiplier: 2x, 4x, 6x, or 8x
 <br>
 
-####Process - Start the interpolation process and monitor progress
+#### Process - Start the interpolation process and monitor progress
 <br>
 Real-time progress tracking
 Process tracking
 <br>
 
-####View Results - Preview and download your enhanced video
+#### View Results - Preview and download your enhanced video
 <br>
 View result in a clean UI
 Download and share options
 <br>
 
-####History - Access previously processed videos from the history panel
+#### History - Access previously processed videos from the history panel
 <br>
 Saves recent projects
 Allows reloading and downloading of previous configurations
@@ -136,14 +136,14 @@ Allows reloading and downloading of previous configurations
 
 
 
-🧠 How It Works
+### 🧠 How It Works
 
 Frame Extraction - Video is split into individual frames
 Analysis - Motion vectors calculated between consecutive frames
 Interpolation - GMFSS_Fortuna model generates intermediate frames
 Reconstruction - New high-frame-rate video is assembled
 
-🔗 Resources
+### 🔗 Resources
 
 [GMFSS_Fortuna GitHub](https://github.com/98mxr/GMFSS_Fortuna)
 
@@ -154,7 +154,7 @@ Reconstruction - New high-frame-rate video is assembled
 
 
 
-📄 License
+### 📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 

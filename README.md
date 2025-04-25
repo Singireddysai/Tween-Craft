@@ -12,4 +12,5 @@ steps to install the dependancies:
 2)npm install
 [![Watch the video](https://img.youtube.com/vi/fvoIUiUS2yI/0.jpg)](https://youtu.be/fvoIUiUS2yI)
 
-![Funny GIF](https://github.com/Singireddysai/Tween-Craft/blob/47b880a5dc19837eabd07aeffc1f6156491c8810/results/results/animation%20high_fps.mp4)
+![Funny GIF](https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/animation%20Hfps_gif.gif?raw=true)
+

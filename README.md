@@ -35,7 +35,7 @@ Watch the demonstration video to see Tween-Craft in action:
 ### Animation Enhancement
 <p align="center">
   <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/animation%20Lfps_gif.gif?raw=true" width="400" alt="Low FPS Animation">
-  <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/animation%20Hfps_gif.gif?raw=true" width="400" alt="High FPS Animation">
+  <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/animation%20Hfps_gif.gif?raw=true" width="380" alt="High FPS Animation">
   <br>
   <em>Original (Left) vs Enhanced 8x (Right)</em>
 </p>

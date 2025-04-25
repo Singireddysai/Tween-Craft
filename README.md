@@ -102,37 +102,37 @@ Start the application:
   npm run dev
   ```
 
-💡 Usage
+###💡 Usage
 
-Upload Video - Select your video file for processing
-
+####Upload Video - Select your video file for processing
+<br>
 Supported formats: MP4, AVI, MOV, WebM
 Max recommended file size: 500MB (depends on your hardware)
 
 
-Configure Settings - Choose desired output dimensions and frame rate multiplier
-
+####Configure Settings - Choose desired output dimensions and frame rate multiplier
+<br>
 Output resolution: (customizable)
 Frame rate multiplier: 2x, 4x, 6x, or 8x
+<br>
 
-
-Process - Start the interpolation process and monitor progress
-
+####Process - Start the interpolation process and monitor progress
+<br>
 Real-time progress tracking
 Process tracking
+<br>
 
-
-View Results - Preview and download your enhanced video
-
+####View Results - Preview and download your enhanced video
+<br>
 View result in a clean UI
 Download and share options
+<br>
 
-
-History - Access previously processed videos from the history panel
-
+####History - Access previously processed videos from the history panel
+<br>
 Saves recent projects
 Allows reloading and downloading of previous configurations
-
+<br>
 
 
 
@@ -145,19 +145,17 @@ Reconstruction - New high-frame-rate video is assembled
 
 🔗 Resources
 
-GMFSS_Fortuna GitHub
-ComfyUI GitHub
-Vimeo Triplet Dataset
-Frame Interpolation Research Paper
+[GMFSS_Fortuna GitHub](https://github.com/98mxr/GMFSS_Fortuna)
+
+[ComfyUI GitHub](https://github.com/comfyanonymous/ComfyUI)
+
+[Vimeo Triplet Dataset](https://paperswithcode.com/dataset/vimeo90k-1)
+
+
 
 
 📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
-🙏 Acknowledgments
-
-GMFSS_Fortuna team for the original model
-ComfyUI for the workflow interface
-Vimeo Triplet Dataset for training data
 
 
 <div align="center">

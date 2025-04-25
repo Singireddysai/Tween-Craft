@@ -22,7 +22,7 @@
 
 ## 🎥 Demo
 
-Watch the demonstration video to see Tween-Craft in action:
+**Watch the demonstration video to see Tween-Craft by clicking on preview:**
 
 <div align="center">
   <a href="https://youtu.be/fvoIUiUS2yI">

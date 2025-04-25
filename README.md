@@ -104,31 +104,31 @@ Tween-Craft leverages advanced frame interpolation technology:
 
 ### 💡 Usage
 
-#### Upload Video - Select your video file for processing
+**Upload Video - Select your video file for processing**
 <br>
 Supported formats: MP4, AVI, MOV, WebM
 Max recommended file size: 500MB (depends on your hardware)
 
 
-#### Configure Settings - Choose desired output dimensions and frame rate multiplier
+**Configure Settings - Choose desired output dimensions and frame rate multiplier**
 <br>
 Output resolution: (customizable)
 Frame rate multiplier: 2x, 4x, 6x, or 8x
 <br>
 
-#### Process - Start the interpolation process and monitor progress
+**Process - Start the interpolation process and monitor progress**
 <br>
 Real-time progress tracking
 Process tracking
 <br>
 
-#### View Results - Preview and download your enhanced video
+**View Results - Preview and download your enhanced video**
 <br>
 View result in a clean UI
 Download and share options
 <br>
 
-#### History - Access previously processed videos from the history panel
+**History - Access previously processed videos from the history panel**
 <br>
 Saves recent projects
 Allows reloading and downloading of previous configurations

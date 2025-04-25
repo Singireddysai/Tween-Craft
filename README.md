@@ -56,7 +56,7 @@
   <em>Original (Left) vs Enhanced 8x (Right)</em>
 </p>
 
-### **NOTE:** The maximum GIF FPS supported is 33FPS hence to view the exact high FPS check the *results->result videos*
+### **NOTE:** The maximum GIF FPS supported is 33FPS hence to view the exact high FPS check the [results videos](https://github.com/Singireddysai/Tween-Craft/tree/main/results/results%20videos)
 
 ## 🛠️ Technology
 

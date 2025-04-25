@@ -34,7 +34,7 @@
 
 ### Animation Enhancement
 <p align="center">
-  <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/animation%20Lfps_gif.gif?raw=true" width="400" height="450" alt="Low FPS Animation" hspace="10">
+  <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/animation%20Lfps_gif.gif?raw=true" width="400" height="450" alt="Low FPS Animation">
   <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/animation%20Hfps_gif.gif?raw=true" width="400" height="450" alt="High FPS Animation">
   <br>
   <em>Original (Left) vs Enhanced 8x (Right)</em>
@@ -42,7 +42,7 @@
 
 ### Speaking Scene
 <p align="center">
-  <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/deal%20wit%20it%20Lfps_gif.gif?raw=true" width="400" alt="Low FPS Speaking" hspace="10">
+  <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/deal%20wit%20it%20Lfps_gif.gif?raw=true" width="400" alt="Low FPS Speaking">
   <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/deal%20wit%20it%20Hfps_gif.gif?raw=true" width="400" alt="High FPS Speaking">
   <br>
   <em>Original (Left) vs Enhanced 8x (Right)</em>
@@ -50,7 +50,7 @@
 
 ### Motion Sequence
 <p align="center">
-  <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/lingo%20Lfps_gif.gif" width="400" alt="Low FPS Motion" style="margin-right: 40px;">
+  <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/lingo%20Lfps_gif.gif" width="400" alt="Low FPS Motion">
   <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/lingo%20Hfps_gif.gif" width="400" alt="High FPS Motion">
   <br>
   <em>Original (Left) vs Enhanced 8x (Right)</em>

@@ -10,7 +10,22 @@ the app is run by cloning this repo and be sure to install comfyui in the local 
 steps to install the dependancies:
 1)rm -rf package-lock.json node_modules
 2)npm install
+
+watch the youtube video to view the working of the app=>
+
 [![Watch the video](https://img.youtube.com/vi/fvoIUiUS2yI/0.jpg)](https://youtu.be/fvoIUiUS2yI)
 
-![Funny GIF](https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/animation%20Hfps_gif.gif?raw=true)
+results=>
+
+result 1
+![animation Lfps](https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/animation%20Lfps_gif.gif?raw=true)
+![animation Hfps](https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/animation%20Hfps_gif.gif?raw=true)
+
+result 2
+![speaking Lfps](https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/deal%20wit%20it%20Lfps_gif.gif?raw=true)
+![speaking Hfps](https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/deal%20wit%20it%20Hfps_gif.gif?raw=true)
+
+result 3
+![lingo Lfps](https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/lingo%20Lfps_gif.gif)
+![lingo Hfps](https://github.com/Singireddysai/Tween-Craft/blob/main/results/result_gifs/lingo%20Hfps_gif.gif)
 

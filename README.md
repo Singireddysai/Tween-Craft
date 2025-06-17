@@ -26,7 +26,7 @@
 
 <div align="center">
   <a href="https://youtu.be/fvoIUiUS2yI">
-    <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/tweencraft-cover.png" alt="Tween-Craft Demo Video" width="600">
+    <img src="https://github.com/Singireddysai/Tween-Craft/blob/main/tweencraft-cover.png" alt="Tween-Craft Demo Video" width="1200">
   </a>
 </div>
 
